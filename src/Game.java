@@ -51,7 +51,7 @@ public class Game extends JPanel implements KeyListener, MouseListener, ActionLi
 
 	boolean gamestart = false;
 	public boolean win = false;
-	public int lives = 10; 
+	public int lives = 3; 
 	
 	
 	
