@@ -43,20 +43,12 @@ import javax.swing.Timer;
 
 public class Game extends JPanel implements KeyListener, MouseListener, ActionListener{
 	
-	
-	public int keyright = KeyEvent.VK_RIGHT;
-	public int keyleft = KeyEvent.VK_LEFT;
 	int velX = 0, velY = 0; //need this for the methods below
-	
 
-	public boolean falling = false;
-	public boolean running = true;
 	public boolean climb = false;
 	public boolean dead = false;
 	public boolean gameOver=false;
-	
-	public boolean left = false;
-	public boolean right = false;
+
 	boolean gamestart = false;
 	public boolean win = false;
 	public int lives = 10; 
@@ -100,16 +92,16 @@ public class Game extends JPanel implements KeyListener, MouseListener, ActionLi
 	Barrel b1;
 	Barrel b2;
 	
-	firstlevel firstlevel = new firstlevel();
-	secondlevel secondlevel = new secondlevel();
-	fourthlevel fourthlevel = new fourthlevel();
-	thirdlevel thirdlevel = new thirdlevel();
-	fifthlevel fifthlevel = new fifthlevel();
-	toplevel toplevel = new toplevel();
+	firstlevel firstlevel = new firstlevel(); //CREATING THE FIRST PLATFORM OBJECT
+	secondlevel secondlevel = new secondlevel(); //creating the second platform object
+	fourthlevel fourthlevel = new fourthlevel(); //creating the fourth platform object
+	thirdlevel thirdlevel = new thirdlevel(); //creating the third platform object
+	fifthlevel fifthlevel = new fifthlevel(); //creating the fifth platform object
+	toplevel toplevel = new toplevel(); //creating the object for the last platfor
 	
 	GameOver Black = new GameOver();
 	ArrayList<Ladders> ladders;
-	ArrayList<Level> platforms;
+	ArrayList<Level> platforms; //this is an arraylist needed for mario, luigi, and the barrel to interact with the platforms
 	private String img;
 	
 	
@@ -121,9 +113,9 @@ public class Game extends JPanel implements KeyListener, MouseListener, ActionLi
 		
 		
 		d.paint(g); //painting donkey kong
-		p.paint(g);
+		p.paint(g); //painting princess peach
 		m.paint(g); //painting mario
-		l.paint(g);
+		l.paint(g); //painting luigi
 		b1.paint(g); //painting barrel
 		
 		
@@ -216,13 +208,17 @@ public class Game extends JPanel implements KeyListener, MouseListener, ActionLi
 		
 		if( m.hitBox().intersects(b1.hitBox()) || l.hitBox().intersects(b1.hitBox()) )
 		{
-			
-		//	Oof.play();
+		//when mario or luigi touch the barrel	
+		
 			lives --;
+		//lives decrease by 1 each time
+			
 			b1.getX();
 			b1.getY();
 			b1.setX(getX());
 			b1.setY(getY());
+			
+			//barrel respawns
 			
 			if(l.getX() == b1.getX() && l.getY() > b1.getY()) {
 				Score += 500;
@@ -278,16 +274,16 @@ public class Game extends JPanel implements KeyListener, MouseListener, ActionLi
 	
 		//Ladders setup
 		
-		ladders = new ArrayList<Ladders>();
-		Ladders.add(L);
-		Ladders.add(L2);
-		Ladders.add(L3);
-		Ladders.add(L4);
-		Ladders.add(L5);
+		ladders = new ArrayList<Ladders>(); //arraylist for the ladders
+		Ladders.add(L); //first ladder
+		Ladders.add(L2); //second ladder
+		Ladders.add(L3); //third ladder
+		Ladders.add(L4); //fourth ladder
+		Ladders.add(L5); //fifth ladder
 		
 		//platforms setup
-		platforms = new ArrayList<Level>();
-		platforms.add(firstlevel);
+		platforms = new ArrayList<Level>(); //arraylist for the platforms
+		platforms.add(firstlevel); //adding the objects to the arraylist
 		platforms.add(secondlevel);
 		platforms.add(fourthlevel);
 		platforms.add(thirdlevel);
